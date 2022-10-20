@@ -1,5 +1,3 @@
-import { getByTitle } from '@testing-library/react';
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { getMovieByQuery } from 'services/MovieApi';
 
@@ -38,6 +36,7 @@ export const Movies = () => {
           ))}
         </ul>
       )}
+      {error && <p>{error}</p>}
     </div>
   );
 };
