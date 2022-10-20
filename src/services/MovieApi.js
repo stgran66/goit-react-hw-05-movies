@@ -20,3 +20,9 @@ export const getMovieByID = async id => {
   const response = await axios.get(request);
   return response.data;
 };
+
+export const getMovieCast = async id => {
+  const request = BaseURL + `/movie/${id}/credits?api_key=${API_KEY}`;
+  const response = await axios.get(request);
+  return response;
+};
