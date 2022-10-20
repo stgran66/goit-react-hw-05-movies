@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import {
   Container,
   NavContainer,
@@ -10,11 +11,13 @@ export const SharedLayout = () => {
     <div>
       <StyledNav>
         <NavContainer>
-          <StyledNavLink>Home</StyledNavLink>
-          <StyledNavLink>Movies</StyledNavLink>
+          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/movies">Movies</StyledNavLink>
         </NavContainer>
       </StyledNav>
-      <Container></Container>
+      <Container>
+        <Outlet />
+      </Container>
     </div>
   );
 };
