@@ -6,12 +6,14 @@ import {
   StyledNavLink,
 } from './SharedLayout.styled';
 
-export const SharedLayout = () => {
+const SharedLayout = () => {
   return (
     <div>
       <StyledNav>
         <NavContainer>
-          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/" end>
+            Home
+          </StyledNavLink>
           <StyledNavLink to="/movies">Movies</StyledNavLink>
         </NavContainer>
       </StyledNav>
@@ -21,3 +23,5 @@ export const SharedLayout = () => {
     </div>
   );
 };
+
+export default SharedLayout;

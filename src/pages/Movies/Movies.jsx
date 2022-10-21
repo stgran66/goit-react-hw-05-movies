@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { getMovieByQuery } from 'services/MovieApi';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Notify } from 'notiflix';
+import { getMovieByQuery } from 'services/MovieApi';
+import { MoviesContainer } from './Movies.styled';
 
-export const Movies = () => {
+const Movies = () => {
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,26 +28,31 @@ export const Movies = () => {
 
   const onQuery = async e => {
     e.preventDefault();
-    const query = e.target.query.value;
+    const query = searchParams.get('query');
     try {
-      setSearchParams({ query });
-      const response = await getMovieByQuery(queryString);
-      setMovies(response);
+      if (query) {
+        setSearchParams({ query });
+        const response = await getMovieByQuery(queryString);
+        setMovies(response);
+      } else {
+        Notify.warning('You should type something');
+      }
     } catch (error) {
       setError(error.message);
     }
   };
 
   const updateQueryString = e => {
-    const nextParams = e.target.value !== '' ? { query: e.target.value } : {};
+    const nextParams =
+      e.target.value.trim() !== '' ? { query: e.target.value } : {};
     setSearchParams(nextParams);
   };
 
   return (
-    <div>
+    <MoviesContainer>
       <form onSubmit={onQuery}>
         <input name="query" onChange={updateQueryString}></input>
-        <button type="submit">search</button>
+        <button type="submit">Search</button>
       </form>
       {movies && (
         <ul>
@@ -59,6 +66,8 @@ export const Movies = () => {
         </ul>
       )}
       {error && <p>{error}</p>}
-    </div>
+    </MoviesContainer>
   );
 };
+
+export default Movies;

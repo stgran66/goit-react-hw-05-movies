@@ -24,6 +24,7 @@ export const NavContainer = styled.nav`
   display: flex;
   margin: auto;
   gap: 40px;
+  padding: 10px;
 `;
 
 export const StyledNav = styled.header`
@@ -36,6 +37,12 @@ export const StyledNavLink = styled(NavLink)`
   color: white;
   display: flex;
   align-items: center;
-  height: 50px;
+  padding: 15px 10px;
   text-decoration: none;
+  border-radius: 5px;
+
+  &.active {
+    background-color: #312d2d;
+    color: white;
+  }
 `;

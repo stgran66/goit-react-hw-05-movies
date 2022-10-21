@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CastInfo, CastContainer } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState(null);
   const [error, setError] = useState(null);
   const { movieID } = useParams();
@@ -44,3 +44,5 @@ export const Cast = () => {
     </CastContainer>
   );
 };
+
+export default Cast;

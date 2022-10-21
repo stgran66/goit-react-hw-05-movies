@@ -7,7 +7,7 @@ import {
   BackLink,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieID } = useParams();
   const location = useLocation();
@@ -55,9 +55,11 @@ export const MovieDetails = () => {
               </li>
             </ul>
           </MovieDetailsContainer>
-          <Outlet />
         </StyledMovieDetails>
       )}
+      <Outlet />
     </div>
   );
 };
+
+export default MovieDetails;
