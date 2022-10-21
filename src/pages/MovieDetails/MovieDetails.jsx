@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieByID } from 'services/MovieApi';
 import {
   StyledMovieDetails,
   MovieDetailsContainer,
+  BackLink,
 } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieID } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -20,10 +23,15 @@ export const MovieDetails = () => {
 
   return (
     <div>
+      <BackLink to={backLinkHref}>&larr; Go Back</BackLink>
       {movie && (
         <StyledMovieDetails>
           <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                : 'https://via.placeholder.com/300x450'
+            }
             alt={`poster of ${movie.title}`}
           />
           <MovieDetailsContainer>
@@ -43,7 +51,7 @@ export const MovieDetails = () => {
                 <Link to="cast">Cast</Link>
               </li>
               <li>
-                <Link>Reviews</Link>
+                <Link to="reviews">Reviews</Link>
               </li>
             </ul>
           </MovieDetailsContainer>

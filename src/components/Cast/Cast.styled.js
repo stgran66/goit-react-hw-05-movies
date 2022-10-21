@@ -9,7 +9,7 @@ export const CastInfo = styled.div`
   justify-content: flex-start;
   img {
     width: 100px;
-    height: 150px;
+    height: 100px;
     object-fit: cover;
   }
 `;

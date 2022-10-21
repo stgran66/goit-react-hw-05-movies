@@ -21,14 +21,6 @@ export const Cast = () => {
     getCast();
   }, [movieID]);
 
-  const getCast = async () => {
-    const data = await getMovieCast(movieID);
-    const cast = data.data.cast;
-
-    return cast;
-  };
-  getCast();
-
   return (
     <CastContainer>
       {cast &&
@@ -42,8 +34,10 @@ export const Cast = () => {
               }
               alt={name}
             />
-            <p>{character}</p>
-            <p>{name}</p>
+            <div>
+              <p>{character}</p>
+              <p>{name}</p>
+            </div>
           </CastInfo>
         ))}
       {error && <p>{error}</p>}
